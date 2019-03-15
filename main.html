@@ -1,0 +1,465 @@
+<!-- Without react -->
+
+<!-- <div id='root'>
+
+    <script type="text/javascript">
+
+    const rootElement = document.getElementById('root')
+    const element = document.createElement('div')
+    element.textContent = 'Hello world'
+    element.className = 'container'
+    rootElement.appendChild(element)
+    </script>
+</div> -->
+
+<!-- With React as CDN -->
+
+<!-- <div id='root'></div>
+    <script crossorigin src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+    <script type="text/javascript">
+
+    const rootElement = document.getElementById('root')
+    const element = React.createElement(
+        'div',
+         {className: 'container'},
+          'Hello World',
+          'Goodbye World'
+        )
+
+        //or we can use it as
+        /* 
+         const element = React.createElement(
+        'div',
+         {className: 'container'
+          children: [ 'Hello World',
+          'Goodbye World']
+        
+        })
+        */
+        console.log(element)
+        ReactDOM.render(element, rootElement)
+    </script> -->
+
+<!-- JSX -->
+
+<!-- <div id='root'></div>
+    <script crossorigin src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    <script type="text/babel">
+
+    const rootElement = document.getElementById('root')
+
+    //We can use interpolation
+    //before:: const element=<div className='container'> Hello World</div>
+
+    const content = 'Hello world'
+    const myClassName = 'container'
+    const element = <div className={myClassName}>{content}</div>
+
+    /*Inside the '{}' youcan put anything about javascript
+    for example the line 58 could be like:
+    const element = <div className="container">{(() => content) ()}</div>
+    and will return the same.
+
+    Also will applied to the className if we want as:
+    const element = <div className={myClassName + '__hi-there'}>{content}</div>
+    
+    Another way is to create a const prop where we are going to pass
+    all the props to the element like so:
+
+    const props = {
+        className: 'container',
+        children: 'Hello World',
+    }
+
+    const element = {
+        <div {...props} /> we can use selfclosing react element
+        //the ... is like spread operator we are spreading the props through 
+        the div
+    }
+
+
+    to overwrite anything that cames with the props we have to write it
+    after the props interpolation like so:
+    <div {...props} className='my-class' /> 
+
+    to overwrite the children props we have to options:
+    <div {...props} children: 'Goddbye World'/>
+
+    OR
+
+    <div {...props}>Hi there!</div>
+    */
+     
+        console.log(element)
+        ReactDOM.render(element, rootElement)
+    </script>
+ -->
+
+<!-- Components -->
+
+<!-- <div id='root'></div>
+    <script crossorigin src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    <script type="text/babel">
+
+    const rootElement = document.getElementById('root')
+    const Message = props => <div>{props.children}</div>
+    const element = (
+        <div className="container">
+            <Message children= 'Hello World'/>
+            <Message children= 'Goodbye World'/>
+        </div>
+
+        //another way to render the component is 
+        /* 
+        <div className="container">
+            <Message>Hello World</Message>
+            <Message>Goodbye World</Message>
+        </div>
+        */
+    )
+
+        ReactDOM.render(element, rootElement)
+    </script> -->
+
+    <!--
+        We create a function "Message" we know that cause it starts
+        with a capital letter (a component) const Message
+        thet will recive props (the argument)  = props =>
+        and that props will be returned in anything we decide
+        <div>{props.children}</div> in react elements
+
+    <div id='root'></div>
+    <script src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/prop-types@15.7.2/"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    <script type="text/babel">
+
+    class SayHello extends React.Component {
+        //for classes we can use statics propTypes
+        static propTypes = {
+            firstName: PropTypes.string.isRequired,
+            lastName: PropTypes.string.isRequired,
+        }
+        render(){
+            const {firstName, lastName} = this.prop
+            return(
+                <div>
+                Hello {firstName} {lastNames} !
+                </div>
+            )
+        }
+    }
+        ReactDOM.render(
+            <SayHello firstName={true}>,
+            document.getElementById('root')
+        )
+    </script> -->
+
+
+<!-- Render React Component
+<body>
+    <div id="root"></div>
+        <script src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+        <script type="text/babel">
+            function Message({message}){
+                return(
+                    <div>
+                    {message ? (
+                        <div>{message}</div>
+                    ):(
+                        <div>No Message</div>
+                    )} 
+                    </div>
+                ) 
+            }
+            ReactDOM.render(
+                <Message message='Hello World/>,
+                document.getElementById("root"),
+            )
+        </script>
+</body> -->
+
+
+<!-- Rerender a React Application -->
+<!-- Just rendering what's updating and not al the page -->
+<div id="root"></div>
+    <script src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    <script type="text/babel">
+    const rootElement = document.getElementById('root')
+        // With this segment we are getting the curren time 
+        //but we have to refresh to see the update
+        //So we're gonna create a function to do that
+
+        /* 
+        const time = new Date().toLocaleTimeString()
+        const element = <div>It is {time}</div>
+        ReactDOM.render(element, rootElement) */
+
+        const tick = () => {
+            const time = new Date().toLocaleTimeString()
+            const element = (
+                <div>
+                It is 
+                <input defaultValue={time} />
+                <input defaultValue={time} />
+                </div>
+            )
+            ReactDOM.render(element, rootElement)
+            
+        }
+
+        tick()
+        setInterval(tick, 1000);
+</script>
+
+<!-- Style React Components -->
+
+<div id="root2"></div>
+    <script src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    <script type="text/babel">
+    const rootElement2 = document.getElementById('root2')
+    function Box({style, ...rest}){
+        return(
+            <div
+            style={{padding: 20, ...style}}
+            {...rest}
+            />
+        )
+    }
+
+    const element = (
+        <div>
+            <Box
+            style={{
+                backgroundColor: 'red'
+            }}>
+            red box
+            </Box>
+        
+           <Box
+            style={{
+                backgroundColor: 'yellow', 
+                padding: 20
+            }}>
+            </Box>
+
+            <Box
+            style={{
+                backgroundColor: 'black'
+            }}>
+            </Box>
+        </div>
+        
+    )
+    ReactDOM.render(element, rootElement2)
+</script>
+
+<!-- Use Event Handlers with React -->
+<!-- 
+<div id="root3"></div>
+    <script src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    <script type="text/babel">
+    const rootElement3 = document.getElementById('root3')
+    const state = {eventCount: 0, username: ''}
+
+    function App() {
+        return(
+            <div>
+                <p>There have been {state.eventCount} events</p>
+                <p>
+                    <button onClick={increment}>
+                        ☆
+                    </button>
+                </p>
+                <p>You typed: {state.username}</p>
+                <p>
+                    <input onChange={getValue}/>
+                </p>
+            </div>
+        )
+    }
+
+    const getValue = (event) => {
+        setState({
+            username: event.target.value,
+        })
+    }
+
+    const increment = () => {
+        setState({
+        eventCount: state.eventCount + 1
+    })
+    }
+   
+
+    function setState(newState){
+        Object.assign(state, newState)
+        renderApp()
+    }
+
+    function renderApp() {
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root3'),
+        )
+    }
+  renderApp()
+</script> -->
+
+<!--Use Component State with React -->
+
+<!-- <body>
+<div id='stopWatch'></div>
+    <script src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    <script type="text/babel">
+
+    class StopWatch extends React.Component{
+        state = {lapse: 0, running: false}
+        handleRunClick = () => {
+            this.setState(state => {
+                //if it's running we need to stop it
+                //that's what clearInterval doing
+                if(state.running){
+                    clearInterval(this.timer)
+                }else{
+                    //if not runnig starts to run
+                    const startTime = 
+                    Date.now() - this.state.lapse
+                    this.timer = setInterval(() => {
+                        this.setState({
+                            lapse: Date.now() - startTime,
+                        },
+                        () => {
+                            console.log(this.state.lapse)
+                        })
+                    })
+                }
+                return {running: !state.running}
+            })
+        }
+
+        handleClearClick = () => {
+            clearInterval(this.timer)
+            this.setState({lapse: 0, running: false})
+        }
+
+        //will prevent the memory leak of not really stopping
+        componentWillUnmount(){
+            clearInterval(this.timer)
+        }
+
+        render(){
+        const {lapse, running} = this.state
+        const buttonStyles ={
+            border: '1px solid #ccc',
+            background: '#fff',
+            fontSize: '2em',
+            padding: 15,
+            margin: 5,
+            width: 200,
+        }
+
+        return(
+            <div style={{textAlign: 'center'}}>
+                <label
+                style={{fontSize:'5em', display: 'block'}}>
+                    {lapse}ms
+                </label>
+                <button 
+                onClick={this.handleRunClick} 
+                style={buttonStyles}>
+                {running ? 'Stop' : 'Start'}
+                </button>
+
+                <button 
+                onClick={this.handleClearClick}
+                style={buttonStyles}>
+                Clear
+                </button>
+            </div>
+        )
+    }
+            
+    }
+    const lement = <StopWatch />
+    ReactDOM.render(
+        lement,
+        document.getElementById('stopWatch')
+    )
+    </script>
+</body> -->
+
+<!-- Use Class Components with react -->
+
+<!-- <body>
+    <div id='likeCounter'></div>
+        <script src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+        <script type="text/babel">
+    
+            class Counter extends React.Component{
+                state = {count: 0}
+                handleClick = () => {
+                    this.setState(({count}) => ({
+                        count: count + 1,
+                    }))
+                }
+                render(){
+                    return(
+                        <button onClick={this.handleClick}>
+                           Hello {this.state.count}
+                        </button>
+                    )
+                }
+            }
+
+            ReactDOM.render(
+                <Counter/>,
+                document.getElementById('likeCounter'),
+            )
+
+        </script>
+    </body> -->
+
+    <body>
+        <div id='fancyForm'></div>
+            <script src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+            <script src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+            <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+            <script type="text/babel">
+                class MyFancyForm extends React.Component{
+                    render(){
+                        return(
+                            <div>
+                                Hello
+                            </div>
+
+                        );
+                    }
+                }
+                
+    
+                ReactDOM.render(
+                    <MyFancyForm/>,
+                    document.getElementById('fancyForm'),
+                )
+    
+            </script>
+        </body>
